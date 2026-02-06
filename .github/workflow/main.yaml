@@ -1,0 +1,35 @@
+name: ci/cd pipeline
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      # Log in to GitHub Container Registry
+      - name: Log in to GitHub Container Registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      
+      # Builds the Docker image
+      - name: Build Docker image
+        run: |
+          IMAGE=ghcr.io/preciousdipe/Sycamore_DevOps_Assessment:${{ github.ref_name }}
+          echo "IMAGE=$IMAGE" >> $GITHUB_ENV
+          docker build -t $IMAGE .
+
+      # Run Trivy and fail the build on High or Critical vulnerabilities
+      - name: Trivy Scan
+        run: |
+          # Run Trivy and fail the build on High or Critical vulnerabilities
+          docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:latest --severity HIGH,CRITICAL --exit-code 1 --no-progress $IMAGE_TAG
+
+      # Push image to GHCR
+      - name: Push Docker image
+        run: |
+          docker push $IMAGE

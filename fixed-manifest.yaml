@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sycamore-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sycamore-api
+  template:
+    metadata:
+      labels:
+        app: sycamore-api
+    spec:
+      containers:
+        - name: api
+          image: node:18-alpine
+          command:
+            [
+              "node",
+              "-e",
+              "let arr=[]; setInterval(() => { arr.push(new Array(1000000).fill('data')); if (arr.length > 10) { arr.shift(); } }, 100);"
+            ]
+          resources:
+            limits:
+              memory: "1Gi"
+            requests:
+              memory: "256Mi"
