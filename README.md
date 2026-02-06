@@ -1,5 +1,7 @@
 # The Task
 
+![status badge](https://github.com/PreciousDipe/Sycamore_DevOps_Assessment/actions/workflows/main.yaml/badge.svg)
+
 ## DevOps Troubleshooting Assessment
 
 ### Task Overview
@@ -22,7 +24,6 @@
   - The repository must show a **Successful** run (after potentially updating the base image or ignoring non-fixed vulnerabilities if allowed).
 
 ## Solution
-### Task A: DevOps Troubleshooting (The 502 Mystery)
 ## 🏗️ Architectural Decisions
 
 ### Task A: DevOps Troubleshooting (The 502 Mystery)
