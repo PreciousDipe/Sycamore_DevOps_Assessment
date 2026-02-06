@@ -3,7 +3,7 @@
 ### Problem Definition
 A Kubernetes pod was terminated with an OOMKilled (Out of Memory) status after exceeding its allocated memory limit. Memory usage kept increasing until Kubernetes killed the pod to protect the node.
 As a result, the application became unstable, leading to downtime and failed request handling.
-![Out of Memory](assets/1.png)
+![Out of Memory](https://github.com/PreciousDipe/sycamore_devOps_assessment/assets/1.png)
 
 ### Root Cause
 The issue was caused by a combination of two main factors:
