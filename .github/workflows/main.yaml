@@ -19,7 +19,7 @@ jobs:
       # Builds the Docker image
       - name: Build Docker image
         run: |
-          IMAGE=ghcr.io/preciousdipe/sycamore_devOps_assessment:${{ github.ref_name }}
+          IMAGE=ghcr.io/preciousdipe/sycamore_devops_assessment:${{ github.ref_name }}
           echo "IMAGE=$IMAGE" >> $GITHUB_ENV
           docker build -t $IMAGE .
 

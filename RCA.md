@@ -3,7 +3,7 @@
 ### Problem Definition
 A Kubernetes pod was terminated with an OOMKilled (Out of Memory) status after exceeding its allocated memory limit. Memory usage kept increasing until Kubernetes killed the pod to protect the node.
 As a result, the application became unstable, leading to downtime and failed request handling.
-![Out of Memory](https://github.com/PreciousDipe/sycamore_devOps_assessment/assets/1.png)
+![Out of Memory](assets/1.png)
 
 ### Root Cause
 The issue was caused by a combination of two main factors:
@@ -22,6 +22,7 @@ The memory leak in the application and the low memory limits in the Kubernetes c
 - Fixing the Application Memory Leak
 The application was updated to prevent memory leaks by managing large arrays more efficiently. Instead of allowing arrays to grow indefinitely, their size is now capped. Once the limit is reached, the array is cleared or trimmed, ensuring memory is properly released and preventing excessive usage.
 ![Out of Memory](assets/4.png)
+
 
 - Updating Kubernetes Memory Configuration
 The pod’s memory settings were adjusted to better match the application’s needs, memory request was increased to 256Mi and memory limit was increased to 1Gi, these changes provide enough memory for the application to run reliably under expected workloads.
